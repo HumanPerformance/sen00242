@@ -13,18 +13,13 @@ void setup(){
 
 void loop(){
 
-  double outputArray[100];
-
+  int outputArray[100];
+  
   for (int i = 0; i < 100; i++) {
 
-    int val = analogRead(sensorPin);
-    double dist = (double) val;
-    outputArray[i] = dist;
-
-    if (i = 99) {
-      Serial.println("completed Loop");
-      
-    }
+    outputArray[i] = analogRead(sensorPin);
+    Serial.println(outputArray[i]);
+    
     
   }
 
