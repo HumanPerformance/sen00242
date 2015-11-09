@@ -1,6 +1,7 @@
 
 // The following script has been designed to interface with the SHARP IR Proximity sensor sen00242
-// The script allows for the user to display sensor readings in the Arduino serial monitor
+// 1 - The script allows for the user to display sensor readings in the Arduino serial monitor
+// 2 - The script averages the readings of the sensors
 //
 // Fluvio L. Lobo Fenoglietto - 11092015 -
 
@@ -11,19 +12,21 @@ void setup(){
 }
 
 void loop(){
-  int val = analogRead(sensorPin);
-  double dist = (double) val;
 
-  if (dist > 450) {
-    Serial.println("too close");
+  double outputArray[100];
+
+  for (int i = 0; i < 100; i++) {
+
+    int val = analogRead(sensorPin);
+    double dist = (double) val;
+    outputArray[i] = dist;
+
+    if (i = 99) {
+      Serial.println("completed Loop");
+      
+    }
+    
   }
-
-  // Mathematical operations on "dist"
-  // double realdist = dist/100;
-  
-  // Serial.println(val);
-  // Serial.println(dist);
-  // Serial.println(realdist);
 
   //just to slow down the output - remove if trying to catch an object passing by
   delay(100);
