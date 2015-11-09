@@ -14,12 +14,16 @@ void loop(){
   int val = analogRead(sensorPin);
   double dist = (double) val;
 
+  if (dist > 450) {
+    Serial.println("too close");
+  }
+
   // Mathematical operations on "dist"
-  double realdist = dist/100;
+  // double realdist = dist/100;
   
   // Serial.println(val);
-  Serial.println(dist);
-  Serial.println(realdist);
+  // Serial.println(dist);
+  // Serial.println(realdist);
 
   //just to slow down the output - remove if trying to catch an object passing by
   delay(100);
