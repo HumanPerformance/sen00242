@@ -9,7 +9,8 @@
 
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
-int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
+const int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
+int outputArray[numberofReads]; //initialize sensor data array - sized by 'numberofReads'
 
 // Dynamic variables -- Variables that do change throughout the code
 
@@ -41,6 +42,9 @@ void loop() {
 
 
 // PROGRAM SUBFUNCTIONS AND EXECUTIONS
+
+// Sensor Read
+// The following sub-routine generates and populates and array with sesnor measurements
 void sensordataRead() {
 
   int resp = Serial.read();
@@ -50,9 +54,7 @@ void sensordataRead() {
     
     Serial.println("START RECORDING");
     
-    int outputArray[numberofReads];
-    int i;
-    
+    int i;   
     for (i = 0; i < numberofReads; i++) {
       
       int counter = i;
@@ -67,15 +69,36 @@ void sensordataRead() {
       delay(100); // purposely delay recording
 
       if (i == 99) {
-        
+
         Serial.println("Data read completed");
+
+        arrayAvg(outputArray);
+        
         Serial.println("To begin reading again, neter '1' into the serial monitor window...");
           
-      }
+      } // End of 'if-statement'
       
     } // End of 'for-loop'
     
   } // End of 'if?'  
 
 } // End of 'sensordataRead'
+
+// Array Average
+// The following sub-routine calculates the average of all the elements contained within a vector
+void arrayAvg(int outputArray[]) {
+
+  int arrayLength = sizeof(outputArray[]);
+  Serial.println(arrayLength);
+  
+  int i;
+  int sum = 0;  
+  for (i = 0; i < arrayLength; i++) {
+    
+    sum = sum + outputArray[i];
+    Serial.println(sum);
+    
+  }// End of 'for-loop'
+  
+}// End of 'arrayAvg'
 
