@@ -64,7 +64,7 @@ void sensordataRead() {
       String outputString = counter + separator + sensorVal;
       Serial.println(outputString);
 
-      delay(100); // Purposely delay recording
+      delay(100); // purposely delay recording
 
       if (i == 99) {
         
