@@ -21,9 +21,26 @@ void loop() {
     if (resp == expected) {
 
       Serial.println("START RECORDING");
+
+      int outputArray[100];
+      int i;
+      for (i = 0; i < 100; i++) {
+        
+        int counter = i;
+        int sensorVal = analogRead(sensorPin);
+        
+        outputArray[i] = sensorVal;
+        
+        String separator = ", ";
+        String outputString = counter + separator + sensorVal;
+        Serial.println(outputString);
+
+        delay(100); // Purposely delay recording
       
-    }
+      }
     
+    }
+
   }
 
-} // End 'void-loop'
+}// End 'void-loop'
