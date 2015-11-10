@@ -1,8 +1,15 @@
-
+// CONTROLLED READ
+//
+// The following script was built to allow users to collect a preset number of readings from the sensor connected to the Arduino board.
+// The script requires some variables to be hard-coded into the script
+//
+// Fluvio L. Lobo Fenoglietto
 
 // VARIABLES
+
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
+int numberofReads = 100;
 
 // Dynamic variables -- Variables that do change throughout the code
 
@@ -40,10 +47,10 @@ void sensordataRead() {
     
     Serial.println("START RECORDING");
     
-    int outputArray[100];
+    int outputArray[numberofReads];
     int i;
     
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < numberofReads; i++) {
       
       int counter = i;
       int sensorVal = analogRead(sensorPin);
