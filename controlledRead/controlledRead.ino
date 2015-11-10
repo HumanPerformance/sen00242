@@ -11,6 +11,8 @@
 int sensorPin = 0; //reference to analog pin 0 (A0)
 const int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
 int outputArray[numberofReads]; //initialize sensor data array - sized by 'numberofReads'
+int sumReads = 0;
+int readAvg = 0;
 
 // Dynamic variables -- Variables that do change throughout the code
 
@@ -58,13 +60,16 @@ void sensordataRead() {
     for (i = 0; i < numberofReads; i++) {
       
       int counter = i;
-      int sensorVal = analogRead(sensorPin);
-        
-      outputArray[i] = sensorVal;
-        
+
+      int sensorVal = analogRead(sensorPin); //reading sensor output
+              
+      outputArray[i] = sensorVal; //storing sensor output in array   
+         
       String separator = ", ";
       String outputString = counter + separator + sensorVal;
-      Serial.println(outputString);
+      Serial.println(outputString); //displaying sensor output in serial monitor
+
+      sumReads = sumReads + sensorVal; //addition of sensor output values
 
       delay(100); // purposely delay recording
 
@@ -72,7 +77,10 @@ void sensordataRead() {
 
         Serial.println("Data read completed");
 
-        arrayAvg(outputArray);
+        readAvg = sumReads/numberofReads; //average of sensor readings
+        String initiator = "The average reading was: ";
+        String outputString = initiator + readAvg; 
+        Serial.println(outputString);
         
         Serial.println("To begin reading again, neter '1' into the serial monitor window...");
           
@@ -84,21 +92,4 @@ void sensordataRead() {
 
 } // End of 'sensordataRead'
 
-// Array Average
-// The following sub-routine calculates the average of all the elements contained within a vector
-void arrayAvg(int outputArray[]) {
-
-  int arrayLength = sizeof(outputArray[]);
-  Serial.println(arrayLength);
-  
-  int i;
-  int sum = 0;  
-  for (i = 0; i < arrayLength; i++) {
-    
-    sum = sum + outputArray[i];
-    Serial.println(sum);
-    
-  }// End of 'for-loop'
-  
-}// End of 'arrayAvg'
 
