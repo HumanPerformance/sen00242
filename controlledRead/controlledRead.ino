@@ -9,19 +9,22 @@
 
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
-int numberofReads = 100;
+int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
 
 // Dynamic variables -- Variables that do change throughout the code
 
 
 void setup() {
+  
   // setup routines
   Serial.begin(9600);
   while (! Serial);
   
-  // Instruction message:
+  // Initial Message:
+  Serial.println("controlledRead.ino");
+  Serial.println("WELCOME!");
   // START REC.
-  Serial.println("Enter 'start' to begin reading serial data from sensor");
+  Serial.println("To begin recording sensor data type '1' and press [Enter] or {Send} on the serial monitor");
   
 }
 
@@ -63,11 +66,12 @@ void sensordataRead() {
 
       delay(100); // Purposely delay recording
 
-      //if (i == 99) {
+      if (i == 99) {
         
-        //resp = '0';
+        Serial.println("Data read completed");
+        Serial.println("To begin reading again, neter '1' into the serial monitor window...");
           
-      //}
+      }
       
     } // End of 'for-loop'
     
