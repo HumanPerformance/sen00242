@@ -9,10 +9,8 @@
 
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
-const int numberofReads = 10; //reference to the number of measurements taken from the connected sensor
+const int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
 int outputArray[numberofReads]; //initialize sensor data array - sized by 'numberofReads'
-float sumReads = 0;
-float readAvg = 0;
 
 // Dynamic variables -- Variables that do change throughout the code
 
@@ -56,7 +54,9 @@ void sensordataRead() {
     
     Serial.println("START RECORDING");
     
-    int i;   
+    int i;
+    float sumReads = 0;
+    float readAvg = 0;   
     for (i = 0; i < numberofReads; i++) {
       
       int counter = i;
