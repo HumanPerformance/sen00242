@@ -71,7 +71,7 @@ void sensordataRead() {
 
       sumReads = sumReads + (float)sensorVal; //addition of sensor output values
 
-      delay(100); // purposely delay recording
+      // delay(10); // purposely delay recording
 
       if (i == numberofReads-1) {
 
