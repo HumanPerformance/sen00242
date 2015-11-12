@@ -10,10 +10,6 @@
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
 const int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
-int outputArray[numberofReads]; //initialize sensor data array - sized by 'numberofReads'
-
-// Dynamic variables -- Variables that do change throughout the code
-
 
 void setup() {
   
@@ -53,17 +49,17 @@ void sensordataRead() {
   if (resp == expected) {
     
     Serial.println("START RECORDING");
+
+    // Initializing Dynamic Variable - Variables to change with each loop
+    int i; // loop counter
+    float sumReads = 0; // sum of all sensor readings
+    float readAvg = 0; // average of added readings
     
-    int i;
-    float sumReads = 0;
-    float readAvg = 0;   
     for (i = 0; i < numberofReads; i++) {
       
       int counter = i;
 
-      int sensorVal = analogRead(sensorPin); //reading sensor output
-              
-      outputArray[i] = sensorVal; //storing sensor output in array   
+      int sensorVal = analogRead(sensorPin); //reading sensor output  
          
       String separator = ", ";
       String outputString = counter + separator + sensorVal;
@@ -71,7 +67,7 @@ void sensordataRead() {
 
       sumReads = sumReads + (float)sensorVal; //addition of sensor output values
 
-      // delay(10); // purposely delay recording
+      delay(10); // purposely delay recording
 
       if (i == numberofReads-1) {
 
@@ -88,7 +84,7 @@ void sensordataRead() {
       
     } // End of 'for-loop'
     
-  } // End of 'if?'  
+  } // End of 'if-statement'  
 
 } // End of 'sensordataRead'
 
