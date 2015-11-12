@@ -57,12 +57,12 @@ void sensordataRead() {
     
     for (i = 0; i < numberofReads; i++) {
       
-      int counter = i;
+      int counter = i; // defining counter for display
 
       int sensorVal = analogRead(sensorPin); //reading sensor output  
          
       String separator = ", ";
-      String outputString = counter + separator + sensorVal;
+      String outputString = counter + separator + sensorVal; // concatenation of data to be displayed
       Serial.println(outputString); //displaying sensor output in serial monitor
 
       sumReads = sumReads + (float)sensorVal; //addition of sensor output values
@@ -74,9 +74,10 @@ void sensordataRead() {
         Serial.println("Data read completed");
 
         readAvg = sumReads/(float)numberofReads; //average of sensor readings
+        
         String initiator = "The average reading was: ";
-        String outputString = initiator + readAvg; 
-        Serial.println(outputString);
+        String outputString = initiator + readAvg; // concatenation of data to be displayed
+        Serial.println(outputString); // display average of readings
         
         Serial.println("To begin reading again, neter '1' into the serial monitor window...");
           
