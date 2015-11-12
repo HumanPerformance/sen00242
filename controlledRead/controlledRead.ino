@@ -9,10 +9,10 @@
 
 // Static variables -- Variables that do not change throughout the code
 int sensorPin = 0; //reference to analog pin 0 (A0)
-const int numberofReads = 100; //reference to the number of measurements taken from the connected sensor
+const int numberofReads = 10; //reference to the number of measurements taken from the connected sensor
 int outputArray[numberofReads]; //initialize sensor data array - sized by 'numberofReads'
-int sumReads = 0;
-int readAvg = 0;
+float sumReads = 0;
+float readAvg = 0;
 
 // Dynamic variables -- Variables that do change throughout the code
 
@@ -69,15 +69,15 @@ void sensordataRead() {
       String outputString = counter + separator + sensorVal;
       Serial.println(outputString); //displaying sensor output in serial monitor
 
-      sumReads = sumReads + sensorVal; //addition of sensor output values
+      sumReads = sumReads + (float)sensorVal; //addition of sensor output values
 
       delay(100); // purposely delay recording
 
-      if (i == 99) {
+      if (i == numberofReads-1) {
 
         Serial.println("Data read completed");
 
-        readAvg = sumReads/numberofReads; //average of sensor readings
+        readAvg = sumReads/(float)numberofReads; //average of sensor readings
         String initiator = "The average reading was: ";
         String outputString = initiator + readAvg; 
         Serial.println(outputString);
