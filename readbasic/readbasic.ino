@@ -13,5 +13,6 @@ void setup(){
 
 void loop(){
   int val = analogRead(sensorPin); // read serial
+  Serial.println(val); // print sensor output on serial monitor
   delay(100); // delay between readings
 }
